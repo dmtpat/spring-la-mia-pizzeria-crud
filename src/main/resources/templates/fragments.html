@@ -31,7 +31,11 @@
                             <a th:class="|nav-link disabled|" href="#">to set</a>
                         </li>
                     </ul>
-
+                    <form class="d-flex" role="search" th:action="@{/pizza}" method="get">
+                        <input class="form-control me-2" type="search" name="valoreRicerca" th:value="${valoreRicerca}"
+                            placeholder="Search pizza by name" aria-label="Search" />
+                        <button class="btn btn-outline-success" type="submit">Search</button>
+                    </form>
                 </div>
             </div>
         </nav>
