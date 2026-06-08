@@ -11,6 +11,9 @@
 <body>
     <th:block th:replace="~{fragments :: navbar}"></th:block>
     <div class="container text-center">
+
+        <p th:text="${pizzas}" />
+
     </div>
     <th:block th:replace="~{fragments :: bootstrapJs()}"></th:block>
 </body>
