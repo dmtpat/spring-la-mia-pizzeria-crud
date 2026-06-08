@@ -12,8 +12,28 @@
     <th:block th:replace="~{fragments :: navbar}"></th:block>
     <div class="container text-center">
 
-        <p th:if="${pizzas.size() > 0}" th:text="${pizzas}" />
+        <!-- <p th:if="${pizzas.size() > 0}" th:text="${pizzas}" /> -->
         <p th:unless="${pizzas.size() > 0}" th:text="|Non ci sono pizze nel nostro menù!|" />
+        <table th:if="${pizzas.size() > 0}" class="table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th class="text-start">Name</th>
+                    <th>Description</th>
+                    <th>Price</th>
+                    <th>Details</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="pizza : ${pizzas}" th:object="${pizza}">
+                    <td th:text="*{id}" />
+                    <td class="text-start" th:text="*{name}" />
+                    <td class="text-start" th:text="*{description}" />
+                    <td th:text="*{price}" />
+                    <td><a class="btn btn-success" th:href="|pizza/*{id}|">+</a></td>
+                </tr>
+            </tbody>
+        </table>
 
     </div>
     <th:block th:replace="~{fragments :: bootstrapJs()}"></th:block>

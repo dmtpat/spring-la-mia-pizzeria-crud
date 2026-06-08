@@ -9,6 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+
 
 
 @Controller
@@ -25,6 +27,18 @@ public class PizzasController {
         model.addAttribute("pizzas", pizzas);
         return "index";
     }
+
+    @GetMapping("/{id}")
+    public String show(@PathVariable("id") Integer id, Model model) {
+        Pizza selected = null;
+        if (repository.findById(id).isPresent()) {
+            selected = repository.findById(id).get();
+        }
+        model.addAttribute("selected", selected);
+        
+        return "detail";
+    }
+    
     
 
 }
