@@ -11,7 +11,7 @@ import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "pizzas")
-public class pizza {
+public class Pizza {
 
     @Id
     @GeneratedValue( strategy = GenerationType.IDENTITY)
@@ -27,7 +27,7 @@ public class pizza {
     private String imageUrl;
 
     @NotNull
-    private Double price;
+    private Float price;
 
     public Integer getId() {
         return id;
@@ -45,7 +45,7 @@ public class pizza {
         return imageUrl;
     }
 
-    public Double getPrice() {
+    public Float getPrice() {
         return price;
     }
 
@@ -65,13 +65,13 @@ public class pizza {
         this.imageUrl = imageUrl;
     }
 
-    public void setPrice(Double price) {
+    public void setPrice(Float price) {
         this.price = price;
     }
     
     @Override
     public String toString() {
         
-        return String.format("- %s, pizza %s con: %s, %d", this.id, this.name, this.description, this.price);
+        return String.format("- %s, pizza %s: %s, il prezzo è %.2f € -", this.id, this.name, this.description, this.price);
     }
 }
