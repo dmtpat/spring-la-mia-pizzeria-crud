@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <th:block th:replace="~{fragments :: bootstrapCss()}"></th:block>
+    <title>Pizzas</title>
+</head>
+
+<body>
+    <th:block th:replace="~{fragments :: navbar}"></th:block>
+    <div class="container text-center">
+        <div class="row justify-content-center h-100">
+            <div class="col-12">
+                <h1 th:text="|Pizzeria Napoli|" />
+                <h2>Aggiungi una nuova pizza</h2>
+            </div>
+            <div class="col-8 align-self-center text-start">
+                <form id="pizza-form" th:action="@{/pizza/edit/{id}(id=${pizza.id})}" th:object="${pizza}"
+                    method="post">
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Name</label>
+                        <input type="text" name="name" id="name" class="form-control" th:field="*{name}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="description" class="form-label">Description</label>
+                        <textarea name="description" id="description" class="form-control"
+                            th:field="*{description}"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="imageUrl" class="form-label">Url of the image</label>
+                        <input type="text" name="imageUrl" id="imageUrl" class="form-control" th:field="*{imageUrl}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="price" class="form-label">Price</label>
+                        <input type="number" name="price" id="price" class="form-control" th:field="*{price}">
+                    </div>
+                    <div class="mb-3 d-flex justify-content-between">
+                        <input type="submit" value="Update" class="btn btn-outline-primary">
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <th:block th:replace="~{fragments :: bootstrapJs()}"></th:block>
+</body>
+
+</html>

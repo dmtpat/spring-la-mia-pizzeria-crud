@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 
 
+
 @Controller
 @RequestMapping("/pizza")
 public class PizzasController {
@@ -69,6 +70,27 @@ public class PizzasController {
             return "/create";
         }
         repository.save(pizza);
+        return "redirect:/pizza";
+    }
+    
+    @GetMapping("/edit/{id}")
+    public String edit(@PathVariable Integer id, Model model) {
+        model.addAttribute("pizza", repository.findById(id).get());
+        return "edit";
+    }
+
+    @PostMapping("/edit/{id}")
+    public String update(
+        @Valid @ModelAttribute("pizza") Pizza pizza,
+                BindingResult bindingResult,
+                        Model model
+    ) {
+        if (bindingResult.hasErrors()) {
+            return "edit";
+        }
+
+        repository.save(pizza);
+
         return "redirect:/pizza";
     }
     
